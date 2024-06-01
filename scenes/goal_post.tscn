@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0st8w3eht5u0"]
+
+[ext_resource type="PackedScene" uid="uid://cky4x5400kisn" path="res://assets/GoalPost.fbx" id="1_nd6f2"]
+
+[node name="GoalPost" type="Node3D"]
+
+[node name="GoalPost" parent="." instance=ExtResource("1_nd6f2")]

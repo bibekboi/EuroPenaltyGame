@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpdr5g4oh8yye"]
+
+[ext_resource type="PackedScene" uid="uid://d0st8w3eht5u0" path="res://scenes/goal_post.tscn" id="1_5dtxg"]
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_earve"]
+[ext_resource type="PackedScene" uid="uid://x40v71hjppoe" path="res://scenes/ball.tscn" id="2_vrfmd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ihbci"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_sejnn"]
+sky_material = SubResource("ProceduralSkyMaterial_ihbci")
+
+[sub_resource type="Environment" id="Environment_arm81"]
+background_mode = 2
+sky = SubResource("Sky_sejnn")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_earve")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.598471, 1.50563)
+current = true
+fov = 60.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_arm81")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.685293, -0.23058, 0.690801, 0.545084, 0.466657, 0.696502, -0.482966, 0.853853, -0.194111, 0, 6, -8)
+shadow_enabled = true
+
+[node name="GoalPost" parent="." instance=ExtResource("1_5dtxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.37134)
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.23731)
+use_collision = true
+size = Vector3(20, 0.015, 20)
+
+[node name="Ball" parent="." instance=ExtResource("2_vrfmd")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.0267735, 0.197128, -0.554301)
+
+[node name="Boundary" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899048, 1.83486, -11.3367)
+visible = false
+size = Vector3(9.39429, 4.203, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.51234, 1.83486, -7.08811)
+visible = false
+size = Vector3(17.8915, 4.203, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Boundary"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.42403, 1.83486, -7.08811)
+visible = false
+size = Vector3(17.8915, 4.203, 1)
